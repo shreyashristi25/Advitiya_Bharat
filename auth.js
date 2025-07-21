@@ -1,3 +1,5 @@
+// DEPRECATED: This file is not used. All backend logic is in server.js. Do not use this file.
+/*
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
@@ -32,5 +34,6 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ error: "Login failed" });
     }
 });
+*/
 
 module.exports = router;

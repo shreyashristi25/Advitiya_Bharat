@@ -37,7 +37,7 @@ db.run(`CREATE TABLE IF NOT EXISTS users (
     password TEXT
 )`);
 
-// Register (new endpoint for /register)
+// Register (accepts username, email, password)
 app.post('/register', (req, res) => {
     const { username, email, password } = req.body;
     if (!username || !email || !password) {
@@ -55,7 +55,7 @@ app.post('/register', (req, res) => {
     });
 });
 
-// Login (accept username or email)
+// Login (accepts username or email)
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
     db.get(`SELECT * FROM users WHERE username = ? OR email = ?`, [username, username], (err, user) => {
