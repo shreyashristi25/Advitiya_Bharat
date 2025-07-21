@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kerala - Advitiya Bharat</title>
+  <link rel="stylesheet" href="shared-styles.css">
+  <style>
+    body { background: linear-gradient(135deg, #09122C 0%, #2D1B3D 50%, #E67E22 100%); color: white; font-family: 'Arial', sans-serif; overflow-x: hidden; position: relative; }
+    .hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; background: linear-gradient(rgba(9,18,44,0.7), rgba(45,27,61,0.7)), url('https://upload.wikimedia.org/wikipedia/commons/2/2e/Kerala_Backwaters.jpg') center/cover no-repeat; position: relative; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .hero h1 { font-size: 56px; font-weight: bold; letter-spacing: 3px; margin-bottom: 20px; background: linear-gradient(45deg, #E67E22, #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: glow 2s ease-in-out infinite alternate; }
+    .hero p { font-size: 22px; max-width: 600px; margin: 0 auto 30px auto; color: #ffd9b3; text-shadow: 1px 1px 8px #000; }
+    .back-link { display: inline-block; margin-top: 30px; color: #E67E22; background: rgba(9,18,44,0.7); padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: bold; border: 1px solid #E67E22; transition: all 0.3s; }
+    .back-link:hover { background: #E67E22; color: #fff; box-shadow: 0 5px 15px rgba(230,126,34,0.3); }
+    .section { padding: 70px 10vw 40px 10vw; opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(.4,2,.6,1); }
+    .section.visible { opacity: 1; transform: translateY(0); }
+    .section h2 { font-size: 36px; margin-bottom: 30px; background: linear-gradient(45deg, #E67E22, #D35400); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: glow 2s ease-in-out infinite alternate; text-align: center; }
+    .section-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .section-content img { width: 100%; max-width: 350px; border-radius: 18px; box-shadow: 0 8px 32px rgba(230,126,34,0.15); margin: 0 auto; display: block; }
+    .section-content .desc { font-size: 18px; color: #eee; line-height: 1.7; }
+    @media (max-width: 900px) { .section-content { grid-template-columns: 1fr; gap: 20px; } .section { padding: 40px 4vw 20px 4vw; } .hero h1 { font-size: 36px; } }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-logo"><a href="new.html"><h1>Advitiya Bharat</h1></a></div>
+      <ul class="nav-menu">
+        <li><a href="new.html">Home</a></li>
+        <li><a href="states.html">States</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <div class="nav-toggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <section class="hero">
+    <h1>Kerala</h1>
+    <p>God's Own Country - land of backwaters, Kathakali, and Ayurveda.</p>
+    <a href="states.html" class="back-link">← Back to States</a>
+  </section>
+  <section class="section" id="festivals">
+    <h2>Festivals</h2>
+    <div class="section-content">
+      <img src="onam.jpeg" alt="Onam Festival" />
+      <div class="desc"><strong>Onam</strong> is Kerala's most important festival, celebrated with boat races and feasts. <strong>Vishu</strong> and <strong>Thrissur Pooram</strong> are other major festivals.</div>
+    </div>
+  </section>
+  <section class="section" id="arts">
+    <h2>Traditional Arts & Crafts</h2>
+    <div class="section-content">
+      <img src="kathakali.jpeg" alt="Kathakali" />
+      <div class="desc">Kerala is famous for <strong>Kathakali</strong> dance-drama, <strong>Mohiniyattam</strong> classical dance, and <strong>Theyyam</strong> ritual art. The state's artisans are skilled in wood carving and mural painting.</div>
+    </div>
+  </section>
+  <section class="section" id="dance">
+    <h2>Folk Dances</h2>
+    <div class="section-content">
+      <img src="kerela folk dance.jpeg" alt="Kerala Folk Dance" />
+      <div class="desc"><strong>Thiruvathira</strong> and <strong>Kolkali</strong> are popular folk dances, performed during festivals and celebrations. <strong>Oppana</strong> is another traditional dance of Kerala.</div>
+    </div>
+  </section>
+  <section class="section" id="handicrafts">
+    <h2>Handicrafts & Textiles</h2>
+    <div class="section-content">
+      <img src="dress_kerela.webp" alt="Kerala Traditional Dress" />
+      <div class="desc">Kerala is renowned for <strong>Kasavu sarees</strong>, <strong>coir products</strong>, and <strong>wooden crafts</strong>. The state's markets are filled with unique handmade items.</div>
+    </div>
+  </section>
+  <section class="section" id="facts">
+    <h2>Unique Facts</h2>
+    <div class="section-content">
+      <img src="kerela backwaters.jpeg" alt="Kerala Backwaters" />
+      <div class="desc">Kerala is home to the <strong>Kerala Backwaters</strong>, Ayurveda heritage, and the highest literacy rate in India. The state is known as "God's Own Country."</div>
+    </div>
+  </section>
+  <footer class="main-footer">...</footer>
+  <script src="shared-scripts.js"></script>
+  <script>const observer = new IntersectionObserver(function(entries){entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});},{threshold:0.1});document.querySelectorAll('.section').forEach(el=>observer.observe(el));</script>
+</body>
+</html>

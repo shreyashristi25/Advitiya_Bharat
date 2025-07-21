@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Advitiya Bharat</title>
+  <link rel="stylesheet" href="shared-styles.css">
+  <style>
+    body { background: linear-gradient(135deg, #09122C 0%, #2D1B3D 50%, #E67E22 100%); min-height: 100vh; }
+    .login-container { max-width: 400px; margin: 80px auto; background: rgba(255,255,255,0.07); border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); padding: 40px 32px; backdrop-filter: blur(8px); }
+    .login-container h2 { text-align: center; margin-bottom: 32px; font-size: 2rem; background: linear-gradient(45deg, #E67E22, #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .login-form label { display: block; margin-bottom: 8px; color: #ffd9b3; font-weight: bold; }
+    .login-form input { width: 100%; padding: 12px; margin-bottom: 18px; border-radius: 8px; border: 1px solid #E67E22; background: rgba(255,255,255,0.15); color: #fff; font-size: 1rem; }
+    .login-form input:focus { outline: none; border-color: #fff; background: rgba(255,255,255,0.25); }
+    .login-form button { width: 100%; padding: 12px; background: #E67E22; color: #fff; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    .login-form button:hover { background: #D35400; }
+    .error-message { color: #ff7675; background: rgba(255,0,0,0.08); border-radius: 6px; padding: 8px 12px; margin-bottom: 16px; text-align: center; display: none; }
+    .success-message { color: #27ae60; background: rgba(39,174,96,0.08); border-radius: 6px; padding: 8px 12px; margin-bottom: 16px; text-align: center; display: none; }
+    @media (max-width: 600px) { .login-container { padding: 24px 8px; } }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-logo"><a href="new.html"><h1>Advitiya Bharat</h1></a></div>
+      <ul class="nav-menu">
+        <li><a href="new.html">Home</a></li>
+        <li><a href="states.html">States</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="login.html" class="active">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <div class="nav-toggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="login-container">
+    <h2>Login to Your Account</h2>
+    <form class="login-form" id="loginForm">
+      <div class="error-message" id="errorMsg"></div>
+      <div class="success-message" id="successMsg"></div>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required />
+      <button type="submit">Login</button>
+    </form>
+    <div style="text-align:center; margin-top:18px;">
+      <a href="register.html" style="color:#E67E22;">Don't have an account? Register</a>
+    </div>
+  </div>
+  <footer class="main-footer">...</footer>
+  <script src="shared-scripts.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const errorMsg = document.getElementById('errorMsg');
+      const successMsg = document.getElementById('successMsg');
+      errorMsg.style.display = 'none';
+      successMsg.style.display = 'none';
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      if (!username || !password) {
+        errorMsg.textContent = 'Please fill in all fields.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+      try {
+        const res = await fetch('http://localhost:5000/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          successMsg.textContent = 'Login successful! Redirecting...';
+          successMsg.style.display = 'block';
+          if (data.username) {
+            localStorage.setItem('username', data.username);
+            console.log('Username stored in localStorage:', data.username);
+          } else {
+            console.warn('No username returned from backend!');
+          }
+          setTimeout(() => { window.location.href = 'new.html'; }, 1200);
+        } else {
+          errorMsg.textContent = data.message || data.error || 'Invalid credentials.';
+          errorMsg.style.display = 'block';
+        }
+      } catch (err) {
+        errorMsg.textContent = 'Server error. Please try again later.';
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

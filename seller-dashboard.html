@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Seller Dashboard</title>
+  <style>
+    body { background:#111; color:white; font-family:Arial; }
+    .container { max-width: 500px; margin: 60px auto; background: #222; border-radius: 12px; padding: 32px 28px; box-shadow: 0 4px 24px #0008; }
+    h1 { text-align:center; margin-bottom: 32px; }
+    form label { display:block; margin: 18px 0 6px; font-weight:bold; }
+    form input, form textarea, form select {
+      width: 100%; padding: 10px; border-radius: 6px; border: none; margin-bottom: 10px; font-size: 1rem;
+    }
+    form input[type="file"] { background: #333; color: #fff; }
+    .img-preview { display: block; margin: 10px auto 18px; max-width: 180px; max-height: 180px; border-radius: 8px; border: 1px solid #444; }
+    button { background: #ffcc00; color: #222; font-weight: bold; border: none; border-radius: 8px; padding: 12px 32px; font-size: 1.1rem; cursor: pointer; margin-top: 10px; }
+    .success, .error { text-align:center; margin: 12px 0; font-weight:bold; }
+    .success { color: #27ae60; }
+    .error { color: #e74c3c; }
+    #uploadedProducts { margin-top: 40px; }
+    .product-card {
+      background:#181818; border-radius:10px; margin:18px 0; padding:18px; color:#fff; max-width:350px;
+      box-shadow: 0 2px 12px #0006;
+    }
+    .product-card img { max-width:100%; border-radius:8px; margin-bottom:10px; }
+    .product-card h3 { color:#ffcc00; margin:0 0 8px 0; }
+    .product-card p { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <a href="marketplace.html" title="Go to Marketplace" style="position:fixed; top:24px; right:32px; z-index:100; background:#ffcc00; color:#222; border-radius:50px; padding:10px 22px 10px 16px; font-size:1.1rem; font-weight:bold; text-decoration:none; box-shadow:0 2px 12px #0004; display:flex; align-items:center; gap:8px;">
+    <span style="font-size:1.5rem;">🛒</span> Marketplace
+  </a>
+  <div class="container">
+    <h1>Seller Dashboard</h1>
+    <form id="productForm" enctype="multipart/form-data">
+      <label for="productName">Product Name</label>
+      <input type="text" id="productName" name="productName" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="3" required></textarea>
+
+      <label for="price">Price (INR)</label>
+      <input type="number" id="price" name="price" min="1" step="0.01" required>
+
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="">Select Category</option>
+        <option value="Art">Art</option>
+        <option value="Textiles">Textiles</option>
+        <option value="Crafts">Crafts</option>
+        <option value="Jewelry">Jewelry</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="contact">Contact Number</label>
+      <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" required placeholder="Enter 10-digit number">
+
+      <label for="productImage">Product Image</label>
+      <input type="file" id="productImage" name="productImage" accept="image/*" required>
+      <img id="imgPreview" class="img-preview" style="display:none;" />
+
+      <button type="submit">Upload Product</button>
+      <div class="success" id="successMsg" style="display:none;"></div>
+      <div class="error" id="errorMsg" style="display:none;"></div>
+    </form>
+  </div>
+  <script>
+    // Image preview
+    document.getElementById('productImage').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      const preview = document.getElementById('imgPreview');
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+    });
+
+    // Form submit
+    document.getElementById('productForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const successMsg = document.getElementById('successMsg');
+      const errorMsg = document.getElementById('errorMsg');
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+      try {
+        const res = await fetch('http://localhost:5000/api/products', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        if (res.ok) {
+          successMsg.innerHTML = 'Product uploaded successfully!<br>' +
+            '<button id="goToMarketplaceBtn" style="margin-top:14px; background:none; border:none; cursor:pointer; font-size:2rem; display:inline-flex; align-items:center; justify-content:center;">' +
+            '<span title="Go to Marketplace" style="display:inline-block; padding:6px; border-radius:50%; background:#ffcc00; color:#222;">🛒</span>' +
+            '</button>';
+          successMsg.style.display = 'block';
+          form.reset();
+          document.getElementById('imgPreview').style.display = 'none';
+          // Removed fetchProducts(); // Refresh product list
+          document.getElementById('goToMarketplaceBtn').onclick = function() {
+            window.location.href = 'marketplace.html';
+          };
+        } else {
+          errorMsg.textContent = data.message || 'Upload failed.';
+          errorMsg.style.display = 'block';
+        }
+      } catch (err) {
+        errorMsg.textContent = 'Server error. Please try again later.';
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

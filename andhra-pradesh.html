@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andhra Pradesh - Advitiya Bharat</title>
+  <link rel="stylesheet" href="shared-styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #09122C 0%, #2D1B3D 50%, #E67E22 100%);
+      color: white;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      background: linear-gradient(rgba(9,18,44,0.7), rgba(45,27,61,0.7)), url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Kondapalli_Fort.jpg') center/cover no-repeat;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .hero h1 {
+      font-size: 56px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #E67E22, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    .hero p {
+      font-size: 22px;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      color: #ffd9b3;
+      text-shadow: 1px 1px 8px #000;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #E67E22;
+      background: rgba(9,18,44,0.7);
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid #E67E22;
+      transition: all 0.3s;
+    }
+    .back-link:hover {
+      background: #E67E22;
+      color: #fff;
+      box-shadow: 0 5px 15px rgba(230,126,34,0.3);
+    }
+    .section {
+      padding: 70px 10vw 40px 10vw;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(.4,2,.6,1);
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      background: linear-gradient(45deg, #E67E22, #D35400);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow 2s ease-in-out infinite alternate;
+      text-align: center;
+    }
+    .section-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .section-content img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(230,126,34,0.15);
+      margin: 0 auto;
+      display: block;
+    }
+    .section-content .desc {
+      font-size: 18px;
+      color: #eee;
+      line-height: 1.7;
+    }
+    @media (max-width: 900px) {
+      .section-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .section {
+        padding: 40px 4vw 20px 4vw;
+      }
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="new.html"><h1>Advitiya Bharat</h1></a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="new.html">Home</a></li>
+        <li><a href="states.html">States</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <div class="nav-toggle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Andhra Pradesh</h1>
+    <p>The land of Kuchipudi, vibrant festivals, and rich Telugu heritage.</p>
+    <a href="states.html" class="back-link">← Back to States</a>
+  </section>
+
+  <section class="section" id="festivals">
+    <h2>Festivals</h2>
+    <div class="section-content">
+      <img src="ughadhi_andhra.jpeg" alt="Ugadi Festival" />
+      <div class="desc">
+        <strong>Ugadi</strong> marks the Telugu New Year and is celebrated with special dishes and rituals. <strong>Sankranti</strong> is a harvest festival with kite flying and traditional sweets. <strong>Tirupati Brahmotsavam</strong> is a grand temple festival attracting millions of devotees.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="arts">
+    <h2>Traditional Arts & Crafts</h2>
+    <div class="section-content">
+      <img src="kalamkari_andhtra.jpeg" alt="Kalamkari Art" />
+      <div class="desc">
+        Andhra Pradesh is famous for <strong>Kalamkari</strong> hand-painted textiles, <strong>Kondapalli toys</strong> made from softwood, and <strong>Etikoppaka lacquerware</strong>. These crafts reflect the region’s artistic legacy.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="dance">
+    <h2>Folk Dances</h2>
+    <div class="section-content">
+      <img src="kuchipuri_andhra.jpeg" alt="Kuchipudi Dance" />
+      <div class="desc">
+        <strong>Kuchipudi</strong> is the classical dance form of Andhra Pradesh, known for its grace and expressive storytelling. Other folk dances include <strong>Veeranatyam</strong> and <strong>Butta Bommalu</strong>.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="handicrafts">
+    <h2>Handicrafts & Textiles</h2>
+    <div class="section-content">
+      <img src="mangalagri_andhra.jpeg" alt="Mangalagiri Sarees" />
+      <div class="desc">
+        The state is renowned for <strong>Mangalagiri sarees</strong>, <strong>Venkatagiri sarees</strong>, and <strong>Uppada silk</strong>. These textiles are prized for their quality and intricate designs.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="facts">
+    <h2>Unique Facts</h2>
+    <div class="section-content">
+      <img src="tirumala temple.jpg" alt="Tirumala Temple" />
+      <div class="desc">
+        Andhra Pradesh is home to the world-famous <strong>Tirumala Venkateswara Temple</strong> in Tirupati, one of the richest and most visited temples globally. The state’s coastline is the second longest in India.
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Advitiya Bharat</h3>
+        <p>Celebrating the rich cultural heritage of India through art, craft, and tradition. Discover the diverse tapestry of our nation's cultural legacy.</p>
+        <div class="social-links">
+          <a href="#" class="social-link">Facebook</a>
+          <a href="#" class="social-link">Twitter</a>
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="new.html">Home</a></li>
+          <li><a href="states.html">States</a></li>
+          <li><a href="marketplace.html">Marketplace</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <div class="contact-info">
+          <p><i class="icon">📍</i> New Delhi, India</p>
+          <p><i class="icon">📧</i> info@advitiyabharat.com</p>
+          <p><i class="icon">📞</i> +91 98765 43210</p>
+          <p><i class="icon">🕒</i> Mon-Sat: 9:00 AM - 6:00 PM</p>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p>Advitiya Bharat is dedicated to preserving and promoting India's cultural heritage. We connect artisans with art lovers, bringing traditional crafts to the modern world.</p>
+        <a href="about.html" class="about-link">Learn More</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Advitiya Bharat. All rights reserved. | Celebrating Indian Culture</p>
+    </div>
+  </footer>
+
+  <script src="shared-scripts.js"></script>
+  <script>
+    // Scroll-triggered animations for sections
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.section').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html> 

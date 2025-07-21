@@ -1,0 +1,207 @@
+<!-- Shared Navigation Component -->
+<nav class="main-nav">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a href="new.html">
+        <h1>Advitiya Bharat</h1>
+      </a>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="new.html">Home</a></li>
+      <li><a href="states.html">States</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="register.html">Register</a></li>
+    </ul>
+    <div class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(9, 18, 44, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(230, 126, 34, 0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    transform: translateY(-100%);
+    animation: slideDown 1s ease-out 0.5s forwards;
+  }
+
+  @keyframes slideDown {
+    to { transform: translateY(0); }
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+  }
+
+  .nav-logo a {
+    text-decoration: none;
+  }
+
+  .nav-logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #E67E22, #D35400);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: glow 2s ease-in-out infinite alternate;
+    margin: 0;
+  }
+
+  @keyframes glow {
+    from { filter: drop-shadow(0 0 5px rgba(230, 126, 34, 0.5)); }
+    to { filter: drop-shadow(0 0 20px rgba(230, 126, 34, 0.8)); }
+  }
+
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+  }
+
+  .nav-menu li {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .nav-menu li:nth-child(1) { animation-delay: 0.8s; }
+  .nav-menu li:nth-child(2) { animation-delay: 1s; }
+  .nav-menu li:nth-child(3) { animation-delay: 1.2s; }
+  .nav-menu li:nth-child(4) { animation-delay: 1.4s; }
+  .nav-menu li:nth-child(5) { animation-delay: 1.6s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 10px 0;
+  }
+
+  .nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #E67E22;
+    transition: width 0.3s ease;
+  }
+
+  .nav-menu a:hover::after {
+    width: 100%;
+  }
+
+  .nav-menu a:hover {
+    color: #E67E22;
+    text-shadow: 0 0 10px rgba(230, 126, 34, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+  }
+
+  .nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #E67E22;
+    transition: all 0.3s ease;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      left: -100%;
+      width: 100%;
+      height: calc(100vh - 70px);
+      background: rgba(9, 18, 44, 0.98);
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 50px;
+      gap: 20px;
+      transition: left 0.3s ease;
+    }
+
+    .nav-menu.active {
+      left: 0;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', function() {
+        navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+
+      // Close menu when clicking on a link
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navToggle.classList.remove('active');
+          navMenu.classList.remove('active');
+        });
+      });
+    }
+  });
+</script> 

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | Advitiya_Bharat</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #09122C 0%, #2D1B3D 50%, #E67E22 100%);
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated background particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(230,126,34,0.1)"/></svg>') repeat;
+      animation: float 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .register-container {
+      background: rgba(230, 126, 34, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      width: 400px;
+      border: 1px solid rgba(230, 126, 34, 0.2);
+      transform: translateY(30px);
+      opacity: 0;
+      animation: slideInUp 0.8s ease-out forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .register-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(230, 126, 34, 0.1), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite;
+      z-index: -1;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    @keyframes slideInUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: linear-gradient(45deg, #E67E22, #D35400);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 5px rgba(230, 126, 34, 0.5)); }
+      to { filter: drop-shadow(0 0 20px rgba(230, 126, 34, 0.8)); }
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0.2s; }
+    .form-group:nth-child(2) { animation-delay: 0.4s; }
+    .form-group:nth-child(3) { animation-delay: 0.6s; }
+    .form-group:nth-child(4) { animation-delay: 0.8s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 15px 20px;
+      background: rgba(230, 126, 34, 0.1);
+      border: 2px solid rgba(230, 126, 34, 0.2);
+      border-radius: 15px;
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #E67E22;
+      box-shadow: 0 0 20px rgba(230, 126, 34, 0.3);
+      transform: scale(1.02);
+    }
+
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus::placeholder {
+      opacity: 0.5;
+      transform: translateX(10px);
+    }
+
+    .form-group label {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label {
+      top: 0;
+      font-size: 12px;
+      color: #E67E22;
+      transform: translateY(-50%);
+    }
+
+    .register-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(45deg, #E67E22, #D35400);
+      border: none;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease-out 1s forwards;
+    }
+
+    .register-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .register-btn:hover::before {
+      left: 100%;
+    }
+
+    .register-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(230, 126, 34, 0.4);
+    }
+
+    .register-btn:active {
+      transform: translateY(0);
+    }
+
+    .register-btn.loading {
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .register-btn.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border: 2px solid transparent;
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .register-container p {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 1.2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .register-container a {
+      color: #E67E22;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .register-container a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #E67E22;
+      transition: width 0.3s ease;
+    }
+
+    .register-container a:hover::after {
+      width: 100%;
+    }
+
+    .register-container a:hover {
+      text-shadow: 0 0 10px rgba(230, 126, 34, 0.5);
+    }
+
+    /* Error animation */
+    .error {
+      animation: shake 0.5s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* Success animation */
+    .success {
+      animation: successPulse 0.5s ease-in-out;
+    }
+
+    @keyframes successPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Floating elements */
+    .floating-element {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: rgba(230, 126, 34, 0.3);
+      border-radius: 50%;
+      animation: floatElement 6s ease-in-out infinite;
+    }
+
+    .floating-element:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+      top: 60%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    .floating-element:nth-child(3) {
+      bottom: 30%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    @keyframes floatElement {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+    }
+
+    /* Responsive design */
+    @media (max-width: 480px) {
+      .register-container {
+        width: 90%;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating background elements -->
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+
+  <div class="register-container">
+    <h2>Register</h2>
+    <form id="registerForm">
+      <div class="form-group">
+        <input type="text" id="username" placeholder=" " required />
+        <label for="username">Username</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" placeholder=" " required />
+        <label for="email">Email</label>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" placeholder=" " required />
+        <label for="password">Password</label>
+      </div>
+      <div class="form-group">
+        <input type="password" id="confirmPassword" placeholder=" " required />
+        <label for="confirmPassword">Confirm Password</label>
+      </div>
+      <div class="error-message" id="regError" style="display:none; color:#ff7675; background:rgba(255,0,0,0.08); border-radius:6px; padding:8px 12px; margin-bottom:16px; text-align:center;"></div>
+      <div class="success-message" id="regSuccess" style="display:none; color:#27ae60; background:rgba(39,174,96,0.08); border-radius:6px; padding:8px 12px; margin-bottom:16px; text-align:center;"></div>
+      <button type="submit" class="register-btn">
+        <span class="btn-text">Register</span>
+      </button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+  </div>
+
+  <script>
+    // Enhanced form handling with animations
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const registerBtn = document.querySelector('.register-btn');
+      const btnText = document.querySelector('.btn-text');
+      const regError = document.getElementById('regError');
+      const regSuccess = document.getElementById('regSuccess');
+      regError.style.display = 'none';
+      regSuccess.style.display = 'none';
+      // Validate passwords match
+      if (password !== confirmPassword) {
+        registerBtn.classList.add('error');
+        setTimeout(() => {
+          registerBtn.classList.remove('error');
+        }, 500);
+        regError.textContent = 'Passwords do not match!';
+        regError.style.display = 'block';
+        return;
+      }
+      // Add loading state
+      registerBtn.classList.add('loading');
+      btnText.textContent = 'Registering...';
+      // Simulate API call with animation
+      try {
+        const res = await fetch('http://localhost:5000/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password })
+        });
+        const data = await res.json();
+        // Remove loading state
+        registerBtn.classList.remove('loading');
+        btnText.textContent = 'Register';
+        if (res.ok) {
+          // Success animation
+          registerBtn.classList.add('success');
+          regSuccess.textContent = data.message || 'Registration successful! Redirecting...';
+          regSuccess.style.display = 'block';
+          setTimeout(() => { window.location.href = 'login.html'; }, 1200);
+        } else {
+          // Error animation
+          registerBtn.classList.add('error');
+          setTimeout(() => {
+            registerBtn.classList.remove('error');
+          }, 500);
+          regError.textContent = data.error || data.message || 'Registration failed!';
+          regError.style.display = 'block';
+        }
+      } catch (error) {
+        // Remove loading state
+        registerBtn.classList.remove('loading');
+        btnText.textContent = 'Register';
+        // Error animation
+        registerBtn.classList.add('error');
+        setTimeout(() => {
+          registerBtn.classList.remove('error');
+        }, 500);
+        regError.textContent = 'Network error! Please try again.';
+        regError.style.display = 'block';
+      }
+    });
+
+    // Input focus animations
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'scale(1.02)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'scale(1)';
+      });
+    });
+
+    // Add ripple effect to button
+    document.querySelector('.register-btn').addEventListener('click', function(e) {
+      const ripple = document.createElement('span');
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.classList.add('ripple');
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+
+    // Add CSS for ripple effect
+    const style = document.createElement('style');
+    style.textContent = `
+      .register-btn {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+      }
+      
+      @keyframes ripple-animation {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Page load animation
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity 0.5s ease-in-out';
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+  </script>
+</body>
+</html>

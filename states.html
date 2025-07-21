@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explore Indian States</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated background particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+      animation: float 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite;
+      z-index: -1;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    header h1 {
+      font-size: 48px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #ffcc00, #ffaa00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow 2s ease-in-out infinite alternate;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.5)); }
+      to { filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.8)); }
+    }
+
+    header p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .states-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 60px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .state-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: cardFadeIn 0.8s ease-out forwards;
+    }
+
+    .state-card:nth-child(1) { animation-delay: 0.1s; }
+    .state-card:nth-child(2) { animation-delay: 0.2s; }
+    .state-card:nth-child(3) { animation-delay: 0.3s; }
+    .state-card:nth-child(4) { animation-delay: 0.4s; }
+    .state-card:nth-child(5) { animation-delay: 0.5s; }
+    .state-card:nth-child(6) { animation-delay: 0.6s; }
+    .state-card:nth-child(7) { animation-delay: 0.7s; }
+    .state-card:nth-child(8) { animation-delay: 0.8s; }
+    .state-card:nth-child(9) { animation-delay: 0.9s; }
+    .state-card:nth-child(10) { animation-delay: 1.0s; }
+    .state-card:nth-child(11) { animation-delay: 1.1s; }
+    .state-card:nth-child(12) { animation-delay: 1.2s; }
+    .state-card:nth-child(13) { animation-delay: 1.3s; }
+    .state-card:nth-child(14) { animation-delay: 1.4s; }
+    .state-card:nth-child(15) { animation-delay: 1.5s; }
+    .state-card:nth-child(16) { animation-delay: 1.6s; }
+    .state-card:nth-child(17) { animation-delay: 1.7s; }
+    .state-card:nth-child(18) { animation-delay: 1.8s; }
+    .state-card:nth-child(19) { animation-delay: 1.9s; }
+    .state-card:nth-child(20) { animation-delay: 2.0s; }
+    .state-card:nth-child(21) { animation-delay: 2.1s; }
+    .state-card:nth-child(22) { animation-delay: 2.2s; }
+    .state-card:nth-child(23) { animation-delay: 2.3s; }
+    .state-card:nth-child(24) { animation-delay: 2.4s; }
+    .state-card:nth-child(25) { animation-delay: 2.5s; }
+    .state-card:nth-child(26) { animation-delay: 2.6s; }
+    .state-card:nth-child(27) { animation-delay: 2.7s; }
+    .state-card:nth-child(28) { animation-delay: 2.8s; }
+    .state-card:nth-child(29) { animation-delay: 2.9s; }
+
+    @keyframes cardFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .state-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: left 0.5s;
+      z-index: -1;
+    }
+
+    .state-card:hover::before {
+      left: 100%;
+    }
+
+    .state-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: #ffcc00;
+    }
+
+    .state-card:active {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .state-card h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .state-card:hover h3 {
+      color: #ffcc00;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    }
+
+    .state-card p {
+      font-size: 14px;
+      opacity: 0.8;
+      line-height: 1.4;
+    }
+
+    /* Special styling for Kerala card */
+    .state-card a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .state-card a:hover {
+      color: #ffcc00;
+    }
+
+    /* Floating elements */
+    .floating-element {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: floatElement 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .floating-element:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+      top: 60%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    .floating-element:nth-child(3) {
+      bottom: 30%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    .floating-element:nth-child(4) {
+      top: 40%;
+      right: 30%;
+      animation-delay: 6s;
+    }
+
+    @keyframes floatElement {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(-30px) rotate(180deg); opacity: 1; }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 32px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      .states-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 40px 20px;
+      }
+
+      .state-card {
+        padding: 20px;
+      }
+    }
+
+    /* Loading animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #ffcc00;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating background elements -->
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+
+  <header>
+    <h1>Explore Indian States</h1>
+    <p>Select a state to explore its festivals, traditional dresses, folk art, folk dance and handicrafts</p>
+  </header>
+
+  <div class="states-container">
+    <div class="state-card"><a href="andhra-pradesh.html"><h3>Andhra Pradesh</h3><p>Discover Telugu culture, Kuchipudi dance, and traditional crafts</p></a></div>
+    <div class="state-card"><a href="arunachal-pradesh.html"><h3>Arunachal Pradesh</h3><p>Explore tribal traditions and northeastern heritage</p></a></div>
+    <div class="state-card"><a href="assam.html"><h3>Assam</h3><p>Experience Bihu festival and Assamese silk traditions</p></a></div>
+    <div class="state-card"><a href="bihar.html"><h3>Bihar</h3><p>Discover ancient Buddhist heritage and Madhubani art</p></a></div>
+    <div class="state-card"><a href="chhattisgarh.html"><h3>Chhattisgarh</h3><p>Explore tribal art and Bastar handicrafts</p></a></div>
+    <div class="state-card"><a href="goa.html"><h3>Goa</h3><p>Experience Portuguese influence and coastal culture</p></a></div>
+    <div class="state-card"><a href="gujarat.html"><h3>Gujarat</h3><p>Discover Garba dance and traditional textiles</p></a></div>
+    <div class="state-card"><a href="haryana.html"><h3>Haryana</h3><p>Explore rural traditions and folk music</p></a></div>
+    <div class="state-card"><a href="himachal-pradesh.html"><h3>Himachal Pradesh</h3><p>Discover mountain culture and Pahari art</p></a></div>
+    <div class="state-card"><a href="jharkhand.html"><h3>Jharkhand</h3><p>Experience tribal culture and traditional crafts</p></a></div>
+    <div class="state-card"><a href="karnataka.html"><h3>Karnataka</h3><p>Discover classical music and Mysore silk</p></a></div>
+    <div class="state-card"><a href="kerela.html"><h3>Kerala</h3><p>Experience Kathakali, backwaters, and Ayurveda</p></a></div>
+    <div class="state-card"><a href="madhya-pradesh.html"><h3>Madhya Pradesh</h3><p>Explore tribal art and traditional handicrafts</p></a></div>
+    <div class="state-card"><a href="maharashtra.html"><h3>Maharashtra</h3><p>Discover Marathi culture and Warli art</p></a></div>
+    <div class="state-card"><a href="manipur.html"><h3>Manipur</h3><p>Experience Manipuri dance and traditional crafts</p></a></div>
+    <div class="state-card"><a href="meghalaya.html"><h3>Meghalaya</h3><p>Explore Khasi culture and bamboo crafts</p></a></div>
+    <div class="state-card"><a href="mizoram.html"><h3>Mizoram</h3><p>Discover Mizo traditions and handloom</p></a></div>
+    <div class="state-card"><a href="nagaland.html"><h3>Nagaland</h3><p>Experience Naga culture and tribal art</p></a></div>
+    <div class="state-card"><a href="odisha.html"><h3>Odisha</h3><p>Discover Odissi dance and Pattachitra art</p></a></div>
+    <div class="state-card"><a href="punjab.html"><h3>Punjab</h3><p>Experience Bhangra dance and Phulkari embroidery</p></a></div>
+    <div class="state-card"><a href="rajasthan.html"><h3>Rajasthan</h3><p>Explore royal heritage and traditional crafts</p></a></div>
+    <div class="state-card"><a href="sikkim.html"><h3>Sikkim</h3><p>Discover Himalayan culture and Buddhist art</p></a></div>
+    <div class="state-card"><a href="tamil-nadu.html"><h3>Tamil Nadu</h3><p>Experience Bharatanatyam and traditional silk</p></a></div>
+    <div class="state-card"><a href="telangana.html"><h3>Telangana</h3><p>Discover Telugu culture and traditional crafts</p></a></div>
+    <div class="state-card"><a href="tripura.html"><h3>Tripura</h3><p>Explore tribal culture and bamboo crafts</p></a></div>
+    <div class="state-card"><a href="uttar-pradesh.html"><h3>Uttar Pradesh</h3><p>Discover classical music and traditional arts</p></a></div>
+    <div class="state-card"><a href="uttarakhand.html"><h3>Uttarakhand</h3><p>Explore mountain culture and traditional crafts</p></a></div>
+    <div class="state-card"><a href="west-bengal.html"><h3>West Bengal</h3><p>Experience Bengali culture and traditional art</p></a></div>
+  </div>
+
+  <script>
+    // Enhanced state card interactions
+    document.querySelectorAll('.state-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Prevent default for cards with links
+        if (this.querySelector('a')) {
+          return;
+        }
+
+        e.preventDefault();
+        
+        // Add click animation
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+
+        // Show loading state
+        const originalContent = this.innerHTML;
+        this.innerHTML = '<div class="loading"></div>';
+
+        // Simulate loading
+        setTimeout(() => {
+          this.innerHTML = originalContent;
+          // Here you would typically navigate to the state page
+          alert('State page coming soon!');
+        }, 1000);
+      });
+
+      // Add hover sound effect (optional)
+      card.addEventListener('mouseenter', function() {
+        this.style.transition = 'all 0.3s ease';
+      });
+    });
+
+    // Scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all state cards
+    document.querySelectorAll('.state-card').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Page load animation
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity 0.8s ease-in-out';
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+
+    // Add ripple effect to cards
+    document.querySelectorAll('.state-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // Add CSS for ripple effect
+    const style = document.createElement('style');
+    style.textContent = `
+      .state-card {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+      }
+      
+      @keyframes ripple-animation {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
