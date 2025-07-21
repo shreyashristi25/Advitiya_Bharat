@@ -400,7 +400,7 @@
       btnText.textContent = 'Registering...';
       // Simulate API call with animation
       try {
-        const res = await fetch('http://localhost:5000/register', {
+        const res = await fetch('https://advitiya_bharat.railway.internal/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, email, password })
