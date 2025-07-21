@@ -26,7 +26,11 @@ const upload = multer({ storage: storage });
 const app = express();
 const db = new sqlite3.Database('./users.db');
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://advitiyabharat.netlify.app',
+  credentials: true
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // Create table if not exists
