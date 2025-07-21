@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Advitiya Bharat</title>
-  <link rel="stylesheet" href="shared-styles.css">
+  <link rel="stylesheet" href="shared-style.css">
   <style>
     body { background: linear-gradient(135deg, #09122C 0%, #2D1B3D 50%, #E67E22 100%); min-height: 100vh; }
     .login-container { max-width: 400px; margin: 80px auto; background: rgba(255,255,255,0.07); border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); padding: 40px 32px; backdrop-filter: blur(8px); }
@@ -66,7 +66,7 @@
         return;
       }
       try {
-        const res = await fetch('https://advitiya_bharat.railway.internal/api/login', {
+        const res = await fetch('https://advitiyabharat-production.up.railway.app/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password })

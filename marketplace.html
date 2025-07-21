@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marketplace - Advitiya Bharat</title>
-  <link rel="stylesheet" href="shared-styles.css">
+  <link rel="stylesheet" href="shared-style.css">
   <style>
     body { background: linear-gradient(135deg, #09122C 0%, #2D1B3D 50%, #E67E22 100%); min-height: 100vh; }
     .marketplace-container { max-width: 1200px; margin: 60px auto 40px auto; padding: 0 16px; }
@@ -98,7 +98,7 @@
       errorDiv.style.display = 'none';
       const formData = new FormData(form);
       try {
-        const res = await fetch('https://advitiya_bharat.railway.internal/api/products', { method: 'POST', body: formData });
+        const res = await fetch('https://advitiyabharat-production.up.railway.app/api/products', { method: 'POST', body: formData });
         const data = await res.json();
         if (res.ok) {
           sellModal.style.display = 'none';
@@ -119,12 +119,12 @@
       grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; color:#ffd9b3;">Loading products...</div>';
       emptyMsg.style.display = 'none';
       try {
-        const res = await fetch('https://advitiya_bharat.railway.internal/api/products');
+        const res = await fetch('https://advitiyabharat-production.up.railway.app/api/products');
         const products = await res.json();
         if (Array.isArray(products) && products.length > 0) {
           grid.innerHTML = products.map(product => `
             <div class="product-card">
-              <img src="${product.imageUrl ? 'https://advitiya_bharat.railway.internal' + product.imageUrl : 'https://via.placeholder.com/180x180?text=No+Image'}" alt="${product.productName || product.name}" />
+              <img src="${product.imageUrl ? 'https://advitiyabharat-production.up.railway.app' + product.imageUrl : 'https://via.placeholder.com/180x180?text=No+Image'}" alt="${product.productName || product.name}" />
               <h3>${product.productName || product.name}</h3>
               <div class="price">₹${product.price}</div>
               <div class="desc">${product.description || ''}</div>
@@ -142,7 +142,7 @@
     }
 
     function buyProduct(productName, price) {
-      fetch('https://advitiya_bharat.railway.internal/api/buy', {
+      fetch('https://advitiyabharat-production.up.railway.app/api/buy', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productName, price })
@@ -159,7 +159,7 @@
     }
 
     function fetchOrders() {
-      fetch('https://advitiya_bharat.railway.internal/api/orders')
+      fetch('https://advitiyabharat-production.up.railway.app/api/orders')
         .then(res => res.json())
         .then(orders => {
           const list = document.getElementById('ordersList');

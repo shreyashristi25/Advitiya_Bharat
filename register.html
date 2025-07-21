@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register | Advitiya_Bharat</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="style.css"/>
   <style>
     * {
       box-sizing: border-box;
@@ -400,7 +400,7 @@
       btnText.textContent = 'Registering...';
       // Simulate API call with animation
       try {
-        const res = await fetch('https://advitiya_bharat.railway.internal/register', {
+        const res = await fetch('https://advitiyabharat-production.up.railway.app/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, email, password })
