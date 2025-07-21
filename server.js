@@ -31,6 +31,7 @@ const corsOptions = {
   credentials: true
 };
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight requests
 app.use(bodyParser.json());
 
 // Create table if not exists
